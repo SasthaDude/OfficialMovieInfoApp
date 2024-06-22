@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "858103429336",
+    "project_id": "fliminfo",
+    "storage_bucket": "fliminfo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858103429336:android:afb87353bd7a26b67f3fad",
+        "android_client_info": {
+          "package_name": "com.filminfo.filminfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858103429336-vj17049b5eis37gnuokt5ukrqqfaajv1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.filminfo.filminfo",
+            "certificate_hash": "a1dbdb2206f35a715daab7d9d0c90852e51a9f00"
+          }
+        },
+        {
+          "client_id": "858103429336-0b22hkkb1mete48l6u23gqsd9d2e78e4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGN7gNYQE-aBA_Y8zh9XgVNs-yv5TFg9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858103429336-0b22hkkb1mete48l6u23gqsd9d2e78e4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
