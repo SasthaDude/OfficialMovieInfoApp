@@ -7,16 +7,31 @@ class GetStarted extends StatefulWidget {
   @override
   State<GetStarted> createState() => _GetStartedState();
 }
+void _showMyBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return LogSIGN();
+    },
+  );
+}
+
 
 class _GetStartedState extends State<GetStarted> {
+
   @override
   Widget build(BuildContext context) {
+
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: height,
+            width: width,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -29,21 +44,21 @@ class _GetStartedState extends State<GetStarted> {
             child: Image.asset("assets/getstart.jpg", fit: BoxFit.cover,),
           ),
           Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: height,
+            width: width,
             color: Colors.black.withOpacity(0.4),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.15,
-            left: MediaQuery.of(context).size.width * 0.1,
-            right: MediaQuery.of(context).size.width * 0.1,
+            top: height * 0.15,
+            left: width * 0.1,
+            right: width * 0.1,
             child: Column(
               children: [
                 Text(
                   'Never Miss Any Movie',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 30 * textScaleFactor,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     shadows: [
@@ -55,13 +70,13 @@ class _GetStartedState extends State<GetStarted> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: height * 0.02),
                 Text(
                   'Discover and keep track of your favorite movies.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 12 * textScaleFactor,
                     color: Colors.white70,
                   ),
                 ),
@@ -69,27 +84,24 @@ class _GetStartedState extends State<GetStarted> {
             ),
           ),
           Positioned(
-            left: MediaQuery.of(context).size.width * 0.25,
-            right: MediaQuery.of(context).size.width * 0.25,
-            bottom: MediaQuery.of(context).size.height * 0.2,
+            left: width * 0.25,
+            right: width * 0.25,
+            bottom: height * 0.2,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black, backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: EdgeInsets.symmetric(vertical: height * 0.01),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LogSIGN()),
-                );
-              },
+                _showMyBottomSheet(context);
+                },
               child: Text(
                 "Get Started",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 13 * textScaleFactor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

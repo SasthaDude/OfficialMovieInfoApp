@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -41,6 +42,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -58,9 +63,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(width * 0.04), // Responsive padding
             child: Container(
-              padding: EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(width * 0.06), // Responsive padding
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -68,7 +73,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
-                    offset: Offset(0, 4),
+                    offset: Offset(2, 15),
                   ),
                 ],
               ),
@@ -81,27 +86,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Text(
                       "CREATE NEW PASSWORD",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 14 * textScaleFactor, // Responsive text size
                         fontWeight: FontWeight.bold,
                         color: Colors.blueAccent,
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: height * 0.03), // Responsive height
                     Text(
                       "NEW PASSWORD",
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 12 * textScaleFactor, // Responsive text size
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: height * 0.01), // Responsive height
                     TextFormField(
                       controller: forgotNewPasswordController,
                       obscureText: !ForgotIsPasswordVisible,
                       decoration: InputDecoration(
                         isDense: true,
-                        contentPadding: EdgeInsets.all(15),
+                        contentPadding: EdgeInsets.all(width * 0.04), // Responsive padding
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(color: Colors.blueAccent),
@@ -114,6 +118,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         fillColor: Color.fromRGBO(208, 211, 212, 0.7),
                         suffixIcon: IconButton(
                           icon: Icon(
+                            size: 22,
                             ForgotIsPasswordVisible ? Icons.visibility : Icons.visibility_off,
                             color: Colors.black,
                           ),
@@ -126,22 +131,21 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                       validator: _validatePassword,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: height * 0.02), // Responsive height
                     Text(
                       "CONFIRM PASSWORD",
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 12 * textScaleFactor, // Responsive text size
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: height * 0.01), // Responsive height
                     TextFormField(
                       controller: forgotConfirmPasswordController,
                       obscureText: !ForgotIsConfirmPasswordVisible,
                       decoration: InputDecoration(
                         isDense: true,
-                        contentPadding: EdgeInsets.all(15),
+                        contentPadding: EdgeInsets.all(width * 0.04), // Responsive padding
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(color: Colors.blueAccent),
@@ -154,6 +158,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         fillColor: Color.fromRGBO(208, 211, 212, 0.7),
                         suffixIcon: IconButton(
                           icon: Icon(
+                            size: 22,
                             ForgotIsConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
                             color: Colors.black,
                           ),
@@ -166,19 +171,20 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                       validator: _validateConfirmPassword,
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: height * 0.03), // Responsive height
                     Center(
                       child: ElevatedButton(
                         onPressed: _resetPassword,
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15), backgroundColor: Colors.blueAccent,
+                          padding: EdgeInsets.symmetric(horizontal: width * 0.10, vertical: height * 0.01), // Responsive padding
+                          backgroundColor: Colors.blueAccent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
                         child: Text(
                           "RESET PASSWORD",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          style: TextStyle(fontSize: 11 * textScaleFactor, color: Colors.white), // Responsive text size
                         ),
                       ),
                     ),

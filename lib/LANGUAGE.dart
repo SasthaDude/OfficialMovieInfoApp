@@ -10,26 +10,37 @@ class Language extends StatefulWidget {
 class _LanguageState extends State<Language> {
   // List of language data (for demonstration)
   final List<Map<String, dynamic>> languages = [
-    {'name': 'சினிமா',  'color': Colors.orange},
+    {'name': 'சினிமா',  'color': Colors.grey},
     {'name': 'cinema',  'color': Colors.blue},
     {'name': 'സിനിമ',  'color': Colors.green},
     {'name': 'సినిమా',  'color': Colors.red},
     {'name': 'ಸಿನಿಮಾ',  'color': Colors.purple},
+    {'name': 'हिंदी',  'color': Colors.deepOrange},
   ];
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new_outlined)
+        ),
         title: Text('Languages'),
         backgroundColor: Colors.blue,
       ),
       body: GridView.builder(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(width * 0.04),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
+          crossAxisCount: width > 600 ? 3 : 2, // More columns on larger screens
+          crossAxisSpacing: width * 0.04,
+          mainAxisSpacing: height * 0.02,
           childAspectRatio: 0.85, // Aspect ratio for each grid item
         ),
         itemCount: languages.length,
@@ -37,13 +48,15 @@ class _LanguageState extends State<Language> {
           return _buildLanguageCard(
             languages[index]['name'],
             languages[index]['color'],
+            width,
+            textScaleFactor,
           );
         },
       ),
     );
   }
 
-  Widget _buildLanguageCard(String name, Color color) {
+  Widget _buildLanguageCard(String name, Color color, double width, double textScaleFactor) {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(
@@ -57,11 +70,13 @@ class _LanguageState extends State<Language> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            SizedBox(height: 12),
+            SizedBox(height: width * 0.03),
             Text(
               name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20 * textScaleFactor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

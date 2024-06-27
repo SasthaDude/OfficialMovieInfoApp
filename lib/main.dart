@@ -1,16 +1,25 @@
 import 'package:filminfo/FIRSTPAGE.dart';
 import 'package:filminfo/GetStarted.dart';
+import 'package:filminfo/LANGUAGE.dart';
 import 'package:filminfo/LOGIN.dart';
 import 'package:filminfo/SIGNUP.dart';
+import 'package:filminfo/Settings.dart';
 import 'package:filminfo/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/utils/scroll_behavior.dart';
+import 'AboutApp.dart';
 import 'ForgotPassword.dart';
+import 'HelpCentre.dart';
 import 'LogSign.dart';
 import 'OTTpage.dart';
 import 'PROFILE.dart';
+import 'SplashScreen.dart';
+import 'TheaterPage.dart';
 import 'ThemePage.dart';
+import 'UPCOMING.dart';
 
 
 void main() async {WidgetsFlutterBinding.ensureInitialized();
@@ -64,16 +73,25 @@ class MyApp extends StatelessWidget {
       create: (context) =>ThemeProvider(),
       builder: (context,_) {
         final themProvider = Provider.of<ThemeProvider>(context);
-
-
         return MaterialApp(
+          builder: (context, widget) => ResponsiveWrapper.builder(
+            BouncingScrollWrapper.builder(context, widget!),
+            maxWidth: 1200,
+            minWidth: 480,
+            defaultScale: true,
+            breakpoints: [
+              ResponsiveBreakpoint.resize(480, name: MOBILE),
+              ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+              ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            ],
+          ),
           themeMode: themProvider.themeMode,
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
-
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home:MyHomePagesss(title: '',),
+          home: FirstHomePage(),
         );
       }
   );

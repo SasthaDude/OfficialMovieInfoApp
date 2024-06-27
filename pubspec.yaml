@@ -41,7 +41,7 @@ dependencies:
   firebase_auth: ^4.19.5
   firebase_core: ^2.31.0
   google_sign_in: ^6.2.1
-  responsive_framework: ^1.4.0
+  responsive_framework: ^0.2.0
   image_picker: ^1.1.2
   shared_preferences: ^2.2.3
   image: ^4.2.0
@@ -50,8 +50,8 @@ dependencies:
   theme_provider: ^0.6.0
   theme_tailor: ^3.0.1
   provider: ^6.1.2
-  overlapped_carousel: ^1.0.2
-  card_swiper: ^3.0.1
+  google_generative_ai: ^0.4.3
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
