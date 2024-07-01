@@ -65,7 +65,7 @@ class _OttpageState extends State<Ottpage> {
                 ),
                 Positioned(
                   bottom: 20,
-                  left: 40,
+                  left: 80,
                   child: Text(
                     "gore · substance · tobacco use · violence",
                     style: TextStyle(

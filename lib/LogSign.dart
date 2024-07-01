@@ -1,6 +1,7 @@
 import 'package:filminfo/FIRSTPAGE.dart';
 import 'package:filminfo/LOGIN.dart';
 import 'package:filminfo/SIGNUP.dart';
+import 'package:filminfo/Wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -87,7 +88,7 @@ class _LogSIGNState extends State<LogSIGN> {
               text: 'Login',
               textColor: Colors.red,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
               },
               width: width,
               height: height,

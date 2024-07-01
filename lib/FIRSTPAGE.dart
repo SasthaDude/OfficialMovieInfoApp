@@ -6,6 +6,7 @@ import 'package:filminfo/HelpCentre.dart';
 import 'package:filminfo/Settings.dart';
 import 'package:filminfo/test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,28 @@ class FirstHomePage extends StatefulWidget {
 }
 
 class _FirstHomePageState extends State<FirstHomePage> {
+  Future<void> share(String title, String text, String linkUrl) async {
+    await FlutterShare.share(
+        title: title,
+        text: text,
+        linkUrl: linkUrl,
+        chooserTitle: 'Share via');
+  }
+  Future<void> shareapp() async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: 'Example share text',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title'
+    );
+  }
+
+  void _handleDrawerSelection(String value) {
+    switch (value) {
+      case 'share':
+        share('Example share', 'Example share text', 'https://flutter.dev/');
+        Navigator.pop(context); // Close the drawer after sharing
+        break;}}
   late final Theme_text = MediaQuery.of(context).platformBrightness == Brightness.dark ? "DarkTheme" : "LightTheme";
   Uint8List? _image;
 
@@ -124,6 +147,7 @@ class _FirstHomePageState extends State<FirstHomePage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -131,6 +155,7 @@ class _FirstHomePageState extends State<FirstHomePage> {
     final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     return Scaffold(
+
       drawer: Drawer(
         child: ListView(
           children: [
@@ -229,7 +254,14 @@ class _FirstHomePageState extends State<FirstHomePage> {
                     builder: (context) => AboutPage()
                 ));
               },
+            ),ListTile(
+              leading: Icon(Icons.share),
+              title: Text("Share",style: TextStyle(fontSize: 18 * textScaleFactor)
+              ),
+              onTap: shareapp,
+
             ),
+
             ListTile(
               leading: Icon(Icons.assignment_ind_outlined),
               title: Text(

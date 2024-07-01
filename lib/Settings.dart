@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'ThemePage.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -6,13 +9,18 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  late final Theme_text = MediaQuery
+      .of(context)
+      .platformBrightness == Brightness.dark
+      ? "DarkTheme"
+      :"LightTheme";
   bool receiveNotifications = true;
   String selectedLanguage = 'English';
   String selectedTheme = 'Light';
   String playbackQuality = 'High';
   List<String> selectedGenres = ['Action', 'Adventure'];
   List<String> availableLanguages = ['English', 'Spanish', 'French', 'German'];
-  List<String> availableThemes = ['Light', 'Dark', 'System'];
+  //List<String> availableThemes = ['Light', 'Dark', 'System'];
   List<String> availableQualities = ['Low', 'Medium', 'High'];
   List<String> availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Sci-Fi', 'Thriller'];
 
@@ -57,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildNotificationSwitchTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+     // color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Text('Receive Notifications', style: TextStyle(fontSize: fontSize)),
         trailing: Switch(
@@ -76,12 +84,12 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildLanguageSelectionTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+     // color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Text('Preferred Language', style: TextStyle(fontSize: fontSize)),
         trailing: DropdownButton<String>(
           value: selectedLanguage,
-          dropdownColor: Colors.white.withOpacity(0.9),
+         // dropdownColor: Colors.white.withOpacity(0.9),
           onChanged: (String? value) {
             setState(() {
               selectedLanguage = value!;
@@ -101,37 +109,38 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildThemeSelectionTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+     // color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Text('Theme', style: TextStyle(fontSize: fontSize)),
-        trailing: DropdownButton<String>(
-          value: selectedTheme,
-          dropdownColor: Colors.white.withOpacity(0.9),
-          onChanged: (String? value) {
-            setState(() {
-              selectedTheme = value!;
-            });
-            // Handle theme selection
-          },
-          items: availableThemes.map<DropdownMenuItem<String>>((String theme) {
-            return DropdownMenuItem<String>(
-              value: theme,
-              child: Text(theme),
-            );
-          }).toList(),
-        ),
+        trailing: ChangeThemeButtonWidget(),
+        // trailing: DropdownButton<String>(
+        //   value: selectedTheme,
+        //   dropdownColor: Colors.white.withOpacity(0.9),
+        //   onChanged: (String? value) {
+        //     setState(() {
+        //       selectedTheme = value!;
+        //     });
+        //     // Handle theme selection
+        //   },
+        //   items: availableThemes.map<DropdownMenuItem<String>>((String theme) {
+        //     return DropdownMenuItem<String>(
+        //       value: theme,
+        //       child: Text(theme),
+        //     );
+        //   }).toList(),
+        // ),
       ),
     );
   }
 
   Widget _buildPlaybackQualityTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+     // color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Text('Playback Quality', style: TextStyle(fontSize: fontSize)),
         trailing: DropdownButton<String>(
           value: playbackQuality,
-          dropdownColor: Colors.white.withOpacity(0.9),
+          //dropdownColor: Colors.white.withOpacity(0.9),
           onChanged: (String? value) {
             setState(() {
               playbackQuality = value!;
@@ -151,7 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildGenresSelectionTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+      //color: Colors.white.withOpacity(0.8),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -194,10 +203,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildPrivacySettingsTile(double fontSize) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+   //   color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Text('Privacy Settings', style: TextStyle(fontSize: fontSize)),
-        trailing: Icon(Icons.arrow_forward, color: Colors.deepPurple),
+        trailing: Icon(Icons.arrow_forward, ),
         onTap: () {
           // Navigate to privacy settings page
         },
@@ -206,3 +215,16 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
+class ChangeThemeButtonWidget extends StatelessWidget {
+  const ChangeThemeButtonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    return Switch(value: themeProvider.isDakMode,
+      onChanged: (value){
+        final provider = Provider.of<ThemeProvider>(context,listen:false );
+        provider.toggleTheme(value);
+      },);
+  }
+}

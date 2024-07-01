@@ -20,6 +20,7 @@ import 'SplashScreen.dart';
 import 'TheaterPage.dart';
 import 'ThemePage.dart';
 import 'UPCOMING.dart';
+import 'Wrapper.dart';
 
 
 void main() async {WidgetsFlutterBinding.ensureInitialized();
@@ -91,7 +92,7 @@ class MyApp extends StatelessWidget {
           darkTheme: MyThemes.darkTheme,
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: FirstHomePage(),
+          home: splashScreen(),
         );
       }
   );

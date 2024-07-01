@@ -83,14 +83,14 @@ import 'package:filminfo/GetStarted.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class splashScreenss extends StatefulWidget {
-  splashScreenss({Key? key}) : super(key: key);
+class splashScreen extends StatefulWidget {
+  splashScreen({Key? key}) : super(key: key);
 
   @override
-  State<splashScreenss> createState() => _splashScreenssState();
+  State<splashScreen> createState() => _splashScreenState();
 }
 
-class _splashScreenssState extends State<splashScreenss> with SingleTickerProviderStateMixin {
+class _splashScreenState extends State<splashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
